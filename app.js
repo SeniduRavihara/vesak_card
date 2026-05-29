@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadJpuraLogo() {
         return new Promise((resolve) => {
             const img = new Image();
-            img.src = 'src/jpura.png';
+            img.src = 'src/jpura.webp';
             img.onload = () => {
                 jpuraLogoImage = img;
                 updateLivePreview(); // re-draw preview once loaded
@@ -180,12 +180,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     function getTemplateImage(bgId) {
         const src = `src/img${bgId}.jpeg`;
-        
+
         // Return cached image if available
         if (imageCache[src]) {
             return Promise.resolve(imageCache[src]);
         }
-        
+
         return new Promise((resolve, reject) => {
             const img = new Image();
             img.src = src;
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     // 6. CARD TEMPLATE DRAWING ENGINE (HIGH FIDELITY)
     // -------------------------------------------------------------
-    
+
     // Core drawing logic used for both Live Preview and High-res Export
     function drawVesakCard(ctx, w, h, bgId, senderName, recipientName, backgroundImage = null) {
         ctx.clearRect(0, 0, w, h);
@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.beginPath();
             ctx.ellipse(w * 0.65, h * 0.58, 180, 160, 0, 0, Math.PI * 2);
             ctx.fill();
-            
+
             ctx.fillStyle = 'rgba(191, 54, 12, 0.45)';
             ctx.beginPath();
             ctx.ellipse(w * 0.65, h * 0.58, 178, 158, 0, 0, Math.PI * 2);
@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 3. OVERLAY SENDER & RECIPIENT NAMES (Aligned on the pre-printed parchment paper)
         const scale = w / 1200; // coordinate scale factor
-        
+
         ctx.fillStyle = '#bf360c'; // Rich deep crimson/brown organic ink color
         ctx.font = `700 ${36 * scale}px 'Kalam', 'Caveat', cursive`;
         ctx.textAlign = 'left';
@@ -350,11 +350,11 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(img => {
                 // Success: draw designed JPEG template
                 drawVesakCard(
-                    previewCtx, 
-                    previewCanvas.width, 
-                    previewCanvas.height, 
-                    state.bgId, 
-                    state.sender, 
+                    previewCtx,
+                    previewCanvas.width,
+                    previewCanvas.height,
+                    state.bgId,
+                    state.sender,
                     state.recipient,
                     img
                 );
@@ -363,11 +363,11 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(err => {
                 // Fallback: draw beautiful procedural vector template
                 drawVesakCard(
-                    previewCtx, 
-                    previewCanvas.width, 
-                    previewCanvas.height, 
-                    state.bgId, 
-                    state.sender, 
+                    previewCtx,
+                    previewCanvas.width,
+                    previewCanvas.height,
+                    state.bgId,
+                    state.sender,
                     state.recipient,
                     null
                 );
@@ -469,7 +469,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Dynamic Header titles per step
-        switch(step) {
+        switch (step) {
             case 1:
                 stepTitle.textContent = "පළමු පියවර: නම් ඇතුළත් කරන්න";
                 stepSubtitle.textContent = "සුබපැතුම් යවන්නා සහ ලබන්නාගේ නම් සටහන් කරන්න";
@@ -488,7 +488,7 @@ document.addEventListener('DOMContentLoaded', () => {
     startBtn.addEventListener('click', () => {
         landingView.style.display = 'none';
         creatorView.style.display = 'grid';
-        
+
         renderBackgroundOptions();
         updateLivePreview();
         setStep(1);
@@ -532,21 +532,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const exportCanvas = document.createElement('canvas');
         exportCanvas.width = 1200;
         exportCanvas.height = 1500;
-        
+
         const exportCtx = exportCanvas.getContext('2d');
 
         // Use the same fallback logic as the live preview
         getTemplateImage(state.bgId)
             .then(img => {
                 drawVesakCard(
-                    exportCtx, exportCanvas.width, exportCanvas.height, 
+                    exportCtx, exportCanvas.width, exportCanvas.height,
                     state.bgId, state.sender, state.recipient, img
                 );
                 callback(exportCanvas);
             })
             .catch(err => {
                 drawVesakCard(
-                    exportCtx, exportCanvas.width, exportCanvas.height, 
+                    exportCtx, exportCanvas.width, exportCanvas.height,
                     state.bgId, state.sender, state.recipient, null
                 );
                 callback(exportCanvas);
@@ -600,7 +600,7 @@ document.addEventListener('DOMContentLoaded', () => {
         generateHighResCard((canvas) => {
             canvas.toBlob((blob) => {
                 const file = new File([blob], `USJ_Vesak_Card_${Date.now()}.png`, { type: 'image/png' });
-                
+
                 // If Web Share API with binary files is supported (primarily mobile platforms)
                 if (navigator.canShare && navigator.canShare({ files: [file] })) {
                     navigator.share({
@@ -608,20 +608,20 @@ document.addEventListener('DOMContentLoaded', () => {
                         title: 'පින්බර වෙසක් සිහිවටනයක් 🌸',
                         text: fullShareText
                     })
-                    .then(() => {
-                        modalSuccessTitle.textContent = "බෙදාගැනීම සාර්ථකයි! 🔗";
-                        modalSuccessDesc.textContent = `ඔබගේ වෙසක් පත සාර්ථකව ${platformName} ඔස්සේ බෙදා ගන්නා ලදී. සාමය සහ සතුට පතුරවන්න!`;
-                        successModal.style.display = 'flex';
-                    })
-                    .catch((err) => {
-                        console.log('Share canceled or failed:', err);
-                    })
-                    .finally(() => {
-                        if (activeBtn) {
-                            activeBtn.style.opacity = '1';
-                            activeBtn.style.pointerEvents = 'auto';
-                        }
-                    });
+                        .then(() => {
+                            modalSuccessTitle.textContent = "බෙදාගැනීම සාර්ථකයි! 🔗";
+                            modalSuccessDesc.textContent = `ඔබගේ වෙසක් පත සාර්ථකව ${platformName} ඔස්සේ බෙදා ගන්නා ලදී. සාමය සහ සතුට පතුරවන්න!`;
+                            successModal.style.display = 'flex';
+                        })
+                        .catch((err) => {
+                            console.log('Share canceled or failed:', err);
+                        })
+                        .finally(() => {
+                            if (activeBtn) {
+                                activeBtn.style.opacity = '1';
+                                activeBtn.style.pointerEvents = 'auto';
+                            }
+                        });
                 } else {
                     // Fallback for Desktop & Unsupported Browsers:
                     // 1. Auto-download the high-res customized PNG image first
