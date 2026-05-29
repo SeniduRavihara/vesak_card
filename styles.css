@@ -929,10 +929,10 @@ header {
     .background-grid {
         grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: max-content;
-        gap: 0 12px; /* Vertical gap set to 0, vertical layout controlled by overlap margins */
+        gap: 12px; /* Standard 12px vertical and horizontal grid spacing, no overlaps */
         max-height: 320px;
-        padding-top: 8px; /* Breathing room at top for the first row */
-        padding-bottom: 30px; /* Scroll clearance at the bottom */
+        padding-top: 4px;
+        padding-bottom: 20px;
     }
     .bg-option {
         grid-column: auto !important; /* Reset span 2 from desktop */
@@ -940,15 +940,6 @@ header {
     }
     .bg-option:nth-child(7) {
         grid-column: auto !important; /* Reset centering offset */
-    }
-    /* Dynamic cascading stacked card deck effect: overlapping cards starting from the 2nd row by exactly 20% of their height */
-    .bg-option:nth-child(n+3) {
-        margin-top: -25%; /* Math: 0.20 * (height=width*1.25) = 25% of card width */
-    }
-    /* Elevate active, hovered, or selected cards to sit on top of the stack */
-    .bg-option:hover,
-    .bg-option.selected {
-        z-index: 10;
     }
     .action-card {
         padding: 1rem;
