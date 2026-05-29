@@ -332,15 +332,14 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillStyle = '#3d1d04'; // Premium organic dark brown ink color
         ctx.font = `700 ${36 * scale}px 'Kalam', 'Caveat', cursive`;
 
-        // Draw Sender Name (From) - Centered horizontally so the middle letter sits in the middle of the pre-printed dotted line
+        // Draw Sender Name (From) - Centered horizontally in the middle of the pre-printed dotted line
         ctx.textAlign = 'center';
         const finalSender = senderName.trim() ? senderName : "........................................";
         ctx.fillText(finalSender, 760 * scale, 1296 * scale);
 
-        // Draw Recipient Name (To) - Left aligned next to the 'To:' printed area
-        ctx.textAlign = 'left';
+        // Draw Recipient Name (To) - Centered horizontally in the middle of the pre-printed dotted line
         const finalRecipient = recipientName.trim() ? recipientName : "........................................";
-        ctx.fillText(finalRecipient, 405 * scale, 1348 * scale);
+        ctx.fillText(finalRecipient, 760 * scale, 1348 * scale);
 
         ctx.restore();
     }
