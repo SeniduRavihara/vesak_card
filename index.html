@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>වෙසක් සිහිවටන පත - Faculty of Computing, USJ</title>
+    <meta name="description" content="ශ්‍රී ජයවර්ධනපුර විශ්වවිද්‍යාලයේ පරිගණක පීඨය මඟින් ඔබ ආදරය කරන සැමට රුචි පරිදි වෙසක් සුබපැතුම් පතක් නිර්මාණය කර බාගත කරගැනීමට පිරිනමන සේවාවකි.">
+    <link rel="stylesheet" href="styles.css?v=1.0.3">
+</head>
+<body>
+
+    <!-- Background Dynamic Particle System Canvas -->
+    <canvas id="bg-particles"></canvas>
+
+    <!-- Hanging Animated Lanterns -->
+    <div class="lanterns-container">
+        <div class="lantern-holder">
+            <div class="lantern-line"></div>
+            <div class="lantern">
+                <div class="lantern-tassel"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+        <div class="lantern-holder">
+            <div class="lantern-line"></div>
+            <div class="lantern">
+                <div class="lantern-tassel"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+        <div class="lantern-holder">
+            <div class="lantern-line"></div>
+            <div class="lantern">
+                <div class="lantern-tassel"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+        <div class="lantern-holder">
+            <div class="lantern-line"></div>
+            <div class="lantern">
+                <div class="lantern-tassel"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+        <div class="lantern-holder">
+            <div class="lantern-line"></div>
+            <div class="lantern">
+                <div class="lantern-tassel"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application Shell -->
+    <div class="app-container">
+        
+        <!-- Header Branding (Faculty of Computing, USJ) -->
+        <header>
+            <div class="branding-logo" id="main-logo-btn" style="cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 15px;">
+                <!-- Official Logo of the University of Sri Jayewardenepura -->
+                <img src="src/jpura.png" class="usj-logo-header" alt="USJ Logo" style="width: 55px; height: 55px; object-fit: contain;">
+                <div class="logo-text-group" style="text-align: left; display: flex; flex-direction: column;">
+                    <span class="logo-main-text" style="font-size: 1.85rem; font-weight: 800; background: linear-gradient(45deg, #ffd54f, #00e5ff, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 1px; line-height: 1.2;">Faculty of Computing</span>
+                    <span class="logo-sub-text" style="font-size: 0.8rem; font-weight: 600; color: #ffd54f; letter-spacing: 2px; text-transform: uppercase; font-family: var(--font-sinhala-traditional);">University of Sri Jayewardenepura</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 1. LANDING PAGE VIEW -->
+        <main id="landing-view">
+            <h1 class="hero-title" id="landing-hero-title">වෙසක් සදයි, මිතුරුදමයි</h1>
+            <p class="hero-description">
+                පැරණි මිතුදම් අලුත් කරමින්, මිතුරුදමේ බැඳීම් සවිමත් කරන්නට ශ්‍රී ජයවර්ධනපුර විශ්වවිද්‍යාලයේ පරිගණක පීඨය සමඟ එක් වූ ඔබට ස්තුතියි!
+            </p>
+
+            <button class="start-btn" id="start-wizard-btn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+                </svg>
+                Start
+            </button>
+
+            <!-- Counter Box -->
+            <div class="counter-box">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <div class="counter-text">පරිගණක පීඨය සමඟ බෙදාගත් වෙසක් සුබපැතුම් <span class="counter-number" id="friendship-counter">6,106</span></div>
+            </div>
+
+            <!-- Instructions Card -->
+            <div class="instructions-card">
+                <h2 class="instructions-title">වෙසක් කාඩ්පත් නිර්මාණයට උපදෙස්</h2>
+                <p class="instructions-text">
+                    මේ අසිරිමත් වෙසක් සමයේ ඔබ ආදරය කරන සැමට වෙසක් කාඩ්පතකින් සුබ පතන්නට, ශ්‍රී ජයවර්ධනපුර විශ්වවිද්‍යාලයේ පරිගණක පීඨය මඟින් පිරිනමන මෙම සේවාව භාවිතා කළ හැක. Start බොත්තම ඔබා, ඔබගේ සහ ලබන්නාගේ නම සඳහන් කර, පීඨය මඟින් සපයා ඇති වෙසක් කාඩ්පත් අතුරින් ඔබ වඩාත් සිත් ගත් කාඩ්පත තෝරා ගෙන ඔබේ ආදරණීයයන් වෙනුවෙන් ඔබට නිර්මාණාත්මක වෙසක් කාඩ්පතක් සාදා ගැනීමට හැකියාව ඇත. කාඩ්පතෙහි ඔබ ඇතුළත් කරන නම් ලියවෙනුයේ අලංකාර අත් අකුරු ක්‍රමයකිනි. ඉන් අනතුරුව එය පින්තූරයක් ලෙස Download කරගැනීමට හෝ එසේත් නැතිනම් Whatsapp, Messenger, Instagram හරහා Share කරගැනීමටද අවස්ථාව ඇත.
+                </p>
+            </div>
+        </main>
+
+        <!-- 2. CREATOR / WIZARD VIEW -->
+        <main id="creator-view">
+            
+            <!-- Left Side: Wizard Interface -->
+            <section class="wizard-panel">
+                
+                <!-- Progress Header -->
+                <div class="wizard-header">
+                    <div class="step-indicator" id="step-indicators-bar">
+                        <div class="step-dot active"></div>
+                        <div class="step-dot"></div>
+                        <div class="step-dot"></div>
+                    </div>
+                    <h2 class="step-title" id="wizard-step-title">
+                        පළමු පියවර: නම් ඇතුළත් කරන්න
+                    </h2>
+                    <p class="step-subtitle" id="wizard-step-subtitle">
+                        සුබපැතුම් යවන්නා සහ ලබන්නාගේ නම් සටහන් කරන්න
+                    </p>
+                </div>
+
+                <!-- Active Form Contents -->
+                <div class="step-content">
+                    
+                    <!-- STEP 1: Names Form -->
+                    <div class="step-pane active" id="pane-step-1">
+                        <div class="form-group">
+                            <label class="form-label" for="input-sender">යවන්නාගේ නම (From)</label>
+                            <input type="text" class="form-input" id="input-sender" placeholder="ඔබගේ නම මෙතැන ලියන්න..." maxlength="25" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="input-recipient">ලබන්නාගේ නම (To)</label>
+                            <input type="text" class="form-input" id="input-recipient" placeholder="ලබන්නාගේ නම මෙතැන ලියන්න..." maxlength="25" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: Background Template Grid (15 Backgrounds) -->
+                    <div class="step-pane" id="pane-step-2">
+                        <div class="background-grid" id="bg-selection-grid">
+                            <!-- Injected dynamically via JS with 15 styled options -->
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: Final Review & Action Trigger -->
+                    <div class="step-pane" id="pane-step-3">
+                        <div class="export-panel">
+                            
+                            <div class="action-card" id="btn-download-card">
+                                <div class="action-icon">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
+                                    </svg>
+                                </div>
+                                <div class="action-info">
+                                    <h3 class="action-title">බාගත කරගන්න (Download PNG)</h3>
+                                    <p class="action-desc">උසස් තත්ත්වයේ පින්තූරයක් ලෙස ඔබගේ දුරකථනයට හෝ පරිගණකයට බාගන්න</p>
+                                </div>
+                            </div>
+
+                            <div class="action-card" id="btn-web-share">
+                                <div class="action-icon">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.8 2.04.8 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+                                    </svg>
+                                </div>
+                                <div class="action-info">
+                                    <h3 class="action-title">මිතුරන් සමඟ බෙදාගන්න (Direct Share)</h3>
+                                    <p class="action-desc">ජංගම දුරකථනය ඔස්සේ පින්තූරය සෘජුවම වෙනත් යෙදුම් වලට යොමු කරන්න</p>
+                                </div>
+                            </div>
+
+                            <div class="social-share-group">
+                                <button class="share-btn share-whatsapp" id="share-whatsapp-btn" title="Share via WhatsApp">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 001.335 4.97L2 22l5.203-1.362a9.937 9.937 0 004.805 1.232h.005c5.505 0 9.99-4.478 9.99-9.984a9.97 9.97 0 00-2.928-7.062A9.92 9.92 0 0012.012 2zm5.83 14.12c-.252.71-1.463 1.38-2.013 1.44-.5.05-1.15.08-3.235-.78a11.196 11.196 0 01-4.733-4.16c-.95-1.26-1.52-2.82-1.52-4.43 0-1.63.85-2.43 1.16-2.76.252-.27.563-.34.75-.34.19 0 .38.01.54.02.174.01.41-.07.64.47.25.59.86 2.1.93 2.26.07.16.12.35.02.55-.1.2-.15.33-.3.51-.15.18-.32.4-.45.54-.15.16-.31.33-.13.64.18.31.8 1.31 1.71 2.12.91.81 1.68 1.06 1.99 1.19.31.13.49.11.68-.1.19-.21.81-.94 1.03-1.26.22-.32.44-.27.75-.15s1.97.93 2.31 1.1c.34.17.57.25.65.39.08.14.08.81-.17 1.52z"/>
+                                    </svg>
+                                </button>
+                                <button class="share-btn share-messenger" id="share-messenger-btn" title="Share via Messenger">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M12 2C6.36 2 2 6.13 2 11.7c0 2.9 1.16 5.53 3.08 7.42V22l2.72-1.49c1.3.36 2.7.57 4.2.57 5.64 0 10-4.13 10-9.69C22 6.13 17.64 2 12 2zm1.24 12.36l-2.61-2.78-5.11 2.78 5.62-5.96 2.67 2.78 5.06-2.78-5.63 5.96z"/>
+                                    </svg>
+                                </button>
+                                <button class="share-btn share-instagram" id="share-instagram-btn" title="Share via Instagram">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Footer Navigation Buttons -->
+                <div class="wizard-footer">
+                    <button class="nav-btn back-btn" id="prev-step-btn" disabled>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                        </svg>
+                        Back
+                    </button>
+                    <button class="nav-btn next-btn" id="next-step-btn">
+                        Next
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                        </svg>
+                    </button>
+                </div>
+
+            </section>
+
+            <!-- Right Side: Real-Time Active Card Preview -->
+            <section class="preview-panel">
+                <div class="preview-container" id="vesak-card-preview">
+                    <!-- High-definition live preview canvas (offline drawing) -->
+                    <canvas id="preview-canvas" width="800" height="1000" style="display: none;"></canvas>
+                    <!-- User-friendly image preview supporting long-press saving on mobile -->
+                    <img id="preview-image" alt="වෙසක් සිහිවටන පත" style="width: 100%; height: 100%; object-fit: contain; border-radius: 17px; background-color: #f7f6f9;">
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- Export / Success Popup Dialog Modal -->
+    <div class="modal-overlay" id="success-modal">
+        <div class="modal-card">
+            <div class="modal-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+            </div>
+            <h3 class="modal-title" id="modal-success-title">සාර්ථකයි!</h3>
+            <p class="modal-text" id="modal-success-desc">
+                ඔබගේ වෙසක් සුබපැතුම් පත සාර්ථකව නිර්මාණය කර අවසන් කරන ලදී. මිතුරන් සමඟ සාමය සහ සතුට බෙදා ගන්න!
+            </p>
+            <button class="modal-btn" id="modal-close-btn">හරි (Done)</button>
+        </div>
+    </div>
+
+    <!-- Script imports -->
+    <script src="app.js?v=1.0.3"></script>
+</body>
+</html>
