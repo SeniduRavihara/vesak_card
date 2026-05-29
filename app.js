@@ -583,7 +583,7 @@ document.addEventListener('DOMContentLoaded', () => {
         generateHighResCard((canvas) => {
             const dataUrl = canvas.toDataURL('image/png');
             const link = document.createElement('a');
-            link.download = `VesakCardGreeting_${Date.now()}.png`;
+            link.download = `VesakCardGreeting.png`;
             link.href = dataUrl;
             document.body.appendChild(link);
             link.click();
@@ -646,7 +646,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // 1. Auto-download the high-res customized PNG image first
                     const dataUrl = canvas.toDataURL('image/png');
                     const link = document.createElement('a');
-                    link.download = `VesakCardGreeting_${Date.now()}.png`;
+                    link.download = `VesakCardGreeting.png`;
                     link.href = dataUrl;
                     document.body.appendChild(link);
                     link.click();

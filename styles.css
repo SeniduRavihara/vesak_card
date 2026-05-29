@@ -57,7 +57,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 250px;
+    height: 350px;
     z-index: 10;
     display: flex;
     justify-content: space-between;
@@ -102,7 +102,7 @@ body {
     top: 0;
     left: 50%;
     width: 2px;
-    height: 50%;
+    height: calc(100% - 60px);
     background: linear-gradient(to bottom, #d97706, rgba(217, 119, 6, 0.2));
     transform: translateX(-50%);
 }
