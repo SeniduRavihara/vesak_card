@@ -419,25 +419,30 @@ header {
 
 .step-indicator {
     display: flex;
-    gap: 8px;
-    margin-bottom: 1rem;
+    justify-content: flex-start; /* Align 3 circles to the left of the parent card */
+    gap: 12px; /* Dynamic spacing between step circles */
+    margin-bottom: 1.5rem;
 }
 
 .step-dot {
-    height: 4px;
-    flex: 1;
-    background: rgba(30, 27, 75, 0.08);
-    border-radius: 2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%; /* Perfect circles */
+    background: #cbd5e1; /* Soft light gray for inactive/uncompleted steps */
+    border: 2px solid transparent;
     transition: var(--transition-smooth);
 }
 
 .step-dot.active {
-    background: var(--primary-blue);
-    box-shadow: 0 0 8px var(--primary-blue);
+    background: #ffffff; /* Pure white background */
+    border: 2px solid #94a3b8; /* Gray color border */
+    transform: scale(1.15); /* Enlarge active step slightly */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
 }
 
 .step-dot.completed {
-    background: var(--accent-gold);
+    background: #ffffff; /* Pure white background */
+    border: 2px solid #94a3b8; /* Gray color border */
 }
 
 .step-title {
