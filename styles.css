@@ -606,10 +606,6 @@ header {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* Force 7th item to start at col 2 to perfectly center the 7th and 8th items */
-.bg-option:nth-child(7) {
-    grid-column: 2 / span 2;
-}
 
 .bg-option:hover {
     transform: translateY(-3px);
@@ -938,9 +934,7 @@ header {
         grid-column: auto !important; /* Reset span 2 from desktop */
         position: relative; /* Set local context for z-index layering */
     }
-    .bg-option:nth-child(7) {
-        grid-column: auto !important; /* Reset centering offset */
-    }
+
     .action-card {
         padding: 1rem;
         gap: 15px;
