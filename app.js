@@ -517,6 +517,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     nextStepBtn.addEventListener('click', () => {
+        // Validate names on Step 1
+        if (state.currentStep === 1) {
+            if (!state.sender.trim() || !state.recipient.trim()) {
+                alert("Please enter both the Sender's and Recipient's names to proceed.");
+                return;
+            }
+        }
+
         if (state.currentStep < TOTAL_STEPS) {
             setStep(state.currentStep + 1);
         } else {

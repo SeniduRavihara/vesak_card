@@ -197,7 +197,7 @@ header {
     gap: 15px;
     background: #ffffff; /* Solid white background */
     border: 1.5px solid rgba(30, 27, 75, 0.12); /* Subtle elegant border */
-    padding: 0.7rem 2.2rem;
+    padding: 0.7rem 1.0rem 0.7rem 0.7rem;
     border-radius: 50px; /* Pill shape */
     backdrop-filter: blur(12px);
     box-shadow: 0 8px 32px rgba(30, 27, 75, 0.08);
@@ -235,11 +235,11 @@ header {
 
 .logo-sub-text {
     font-family: 'Outfit', sans-serif; /* Clean sans-serif font */
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 600;
     color: var(--primary-indigo);
     opacity: 0.85; /* Slightly lighter shade of indigo for hierarchy */
-    letter-spacing: 2px;
+    letter-spacing: 3.8px;
     text-transform: uppercase; /* All caps */
     margin-top: 1px;
 }
