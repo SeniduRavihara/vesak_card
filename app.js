@@ -327,15 +327,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // 3. OVERLAY SENDER & RECIPIENT NAMES (Aligned on the pre-printed parchment paper)
         const scale = w / 1200; // coordinate scale factor
 
-        ctx.fillStyle = '#bf360c'; // Rich deep crimson/brown organic ink color
+        ctx.fillStyle = '#3d1d04'; // Premium organic dark brown ink color
         ctx.font = `700 ${36 * scale}px 'Kalam', 'Caveat', cursive`;
-        ctx.textAlign = 'left';
 
-        // Draw Sender Name (From)
+        // Draw Sender Name (From) - Centered horizontally so the middle letter sits at the center of the card
+        ctx.textAlign = 'center';
         const finalSender = senderName.trim() ? senderName : "........................................";
-        ctx.fillText(finalSender, 440 * scale, 1296 * scale);
+        ctx.fillText(finalSender, w / 2, 1296 * scale);
 
-        // Draw Recipient Name (To)
+        // Draw Recipient Name (To) - Left aligned next to the 'To:' printed area
+        ctx.textAlign = 'left';
         const finalRecipient = recipientName.trim() ? recipientName : "........................................";
         ctx.fillText(finalRecipient, 405 * scale, 1348 * scale);
 
