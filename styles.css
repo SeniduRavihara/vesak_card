@@ -928,7 +928,23 @@ header {
     }
     .background-grid {
         grid-template-columns: repeat(2, 1fr);
-        max-height: 320px; /* Constrain grid height on mobile to fit screen elegantly without parent container scroll */
+        grid-auto-rows: max-content;
+        gap: 0 12px; /* Vertical gap set to 0, vertical layout controlled by overlap margins */
+        max-height: 320px;
+        padding-top: 8px; /* Breathing room at top for the first row */
+        padding-bottom: 30px; /* Scroll clearance at the bottom */
+    }
+    .bg-option {
+        position: relative; /* Set local context for z-index layering */
+    }
+    /* Dynamic cascading stacked card deck effect: overlapping cards starting from the 2nd row by exactly 20% of their height */
+    .bg-option:nth-child(n+3) {
+        margin-top: -25%; /* Math: 0.20 * (height=width*1.25) = 25% of card width */
+    }
+    /* Elevate active, hovered, or selected cards to sit on top of the stack */
+    .bg-option:hover,
+    .bg-option.selected {
+        z-index: 10;
     }
     .action-card {
         padding: 1rem;
