@@ -188,26 +188,43 @@ header {
 }
 
 .branding-logo {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 15px;
-    background: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.65);
     border: 1px solid var(--border-glass);
     padding: 0.8rem 2.2rem;
-    border-radius: 60px;
+    border-radius: 12px; /* Changed to box shape instead of pill */
     backdrop-filter: blur(12px);
-    display: inline-flex;
     box-shadow: 0 8px 32px rgba(30, 27, 75, 0.05);
+    transition: var(--transition-smooth);
+}
+
+.branding-logo:hover {
+    box-shadow: 0 12px 40px rgba(30, 27, 75, 0.1);
+    transform: translateY(-2px);
+}
+
+.usj-logo-header {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(180, 83, 9, 0.2));
+    transition: var(--transition-smooth);
+}
+
+.logo-text-group {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
 }
 
 .logo-main-text {
     font-family: 'Outfit', sans-serif;
     font-size: 1.85rem;
     font-weight: 800;
-    background: linear-gradient(45deg, #b45309, #1e1b4b, #2563eb);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--primary-indigo); /* Solid readable dark color */
     letter-spacing: 1px;
     line-height: 1.2;
 }
@@ -215,15 +232,10 @@ header {
 .logo-sub-text {
     font-size: 0.8rem;
     font-weight: 700;
-    color: #4f46e5;
+    color: var(--accent-gold); /* Solid gold color */
     letter-spacing: 2px;
     text-transform: uppercase;
     font-family: var(--font-sinhala-traditional);
-}
-
-.usj-logo-header {
-    filter: drop-shadow(0 4px 8px rgba(180, 83, 9, 0.2));
-    transition: var(--transition-smooth);
 }
 
 .branding-logo:hover .usj-logo-header {
