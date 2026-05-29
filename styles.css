@@ -934,6 +934,11 @@ header {
         grid-column: auto !important; /* Reset span 2 from desktop */
         position: relative; /* Set local context for z-index layering */
     }
+    .bg-option:nth-child(9) {
+        grid-column: span 2 !important;
+        justify-self: center;
+        width: calc(50% - 6px);
+    }
 
     .action-card {
         padding: 1rem;
