@@ -137,14 +137,20 @@
                     <!-- STEP 1: Names Form -->
                     <div class="step-pane active" id="pane-step-1">
                         <div class="form-group">
-                            <label class="form-label" for="input-sender">යවන්නාගේ නම (From)</label>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+                                <label class="form-label" for="input-sender" style="margin-bottom: 0;">යවන්නාගේ නම (From)</label>
+                                <span class="char-counter" id="sender-counter" style="font-size: 0.85rem; font-weight: 700; color: var(--accent-gold); font-family: var(--font-ui);">0/20</span>
+                            </div>
                             <input type="text" class="form-input" id="input-sender"
-                                placeholder="ඔබගේ නම මෙතැන ලියන්න..." maxlength="25" autocomplete="off">
+                                placeholder="ඔබගේ නම මෙතැන ලියන්න..." maxlength="20" autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="input-recipient">ලබන්නාගේ නම (To)</label>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+                                <label class="form-label" for="input-recipient" style="margin-bottom: 0;">ලබන්නාගේ නම (To)</label>
+                                <span class="char-counter" id="recipient-counter" style="font-size: 0.85rem; font-weight: 700; color: var(--accent-gold); font-family: var(--font-ui);">0/20</span>
+                            </div>
                             <input type="text" class="form-input" id="input-recipient"
-                                placeholder="ලබන්නාගේ නම මෙතැන ලියන්න..." maxlength="25" autocomplete="off">
+                                placeholder="ලබන්නාගේ නම මෙතැන ලියන්න..." maxlength="20" autocomplete="off">
                         </div>
                     </div>
 

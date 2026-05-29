@@ -52,9 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const stepSubtitle = document.getElementById('wizard-step-subtitle');
     const stepIndicatorsBar = document.getElementById('step-indicators-bar');
 
-    // Inputs
+    // Inputs & Counters
     const inputSender = document.getElementById('input-sender');
     const inputRecipient = document.getElementById('input-recipient');
+    const senderCounter = document.getElementById('sender-counter');
+    const recipientCounter = document.getElementById('recipient-counter');
     const bgSelectionGrid = document.getElementById('bg-selection-grid');
 
     // Canvas Preview
@@ -330,10 +332,10 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillStyle = '#3d1d04'; // Premium organic dark brown ink color
         ctx.font = `700 ${36 * scale}px 'Kalam', 'Caveat', cursive`;
 
-        // Draw Sender Name (From) - Centered horizontally so the middle letter sits at the center of the card
+        // Draw Sender Name (From) - Centered horizontally so the middle letter sits in the middle of the pre-printed dotted line
         ctx.textAlign = 'center';
         const finalSender = senderName.trim() ? senderName : "........................................";
-        ctx.fillText(finalSender, w / 2, 1296 * scale);
+        ctx.fillText(finalSender, 760 * scale, 1296 * scale);
 
         // Draw Recipient Name (To) - Left aligned next to the 'To:' printed area
         ctx.textAlign = 'left';
@@ -377,15 +379,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // -------------------------------------------------------------
-    // 8. INPUT LISTENERS
+    // 8. INPUT LISTENERS & REAL-TIME CHARACTER COUNTERS
     // -------------------------------------------------------------
     inputSender.addEventListener('input', (e) => {
         state.sender = e.target.value;
+        if (senderCounter) {
+            senderCounter.textContent = `${e.target.value.length}/20`;
+        }
         updateLivePreview();
     });
 
     inputRecipient.addEventListener('input', (e) => {
         state.recipient = e.target.value;
+        if (recipientCounter) {
+            recipientCounter.textContent = `${e.target.value.length}/20`;
+        }
         updateLivePreview();
     });
 
@@ -504,6 +512,8 @@ document.addEventListener('DOMContentLoaded', () => {
         state.sender = '';
         state.recipient = '';
         state.bgId = 1;
+        if (senderCounter) senderCounter.textContent = '0/20';
+        if (recipientCounter) recipientCounter.textContent = '0/20';
         updateLivePreview();
     });
 
