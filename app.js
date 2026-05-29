@@ -474,16 +474,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // Dynamic Header titles per step
         switch (step) {
             case 1:
-                stepTitle.textContent = "පළමු පියවර: නම් ඇතුළත් කරන්න";
-                stepSubtitle.textContent = "සුබපැතුම් යවන්නා සහ ලබන්නාගේ නම් සටහන් කරන්න";
+                stepTitle.textContent = "Step 1: Enter Names";
+                stepSubtitle.textContent = "Enter the sender's and recipient's names for the wishing card";
                 break;
             case 2:
-                stepTitle.textContent = "දෙවන පියවර: පසුබිම තෝරන්න";
-                stepSubtitle.textContent = "කාඩ්පතට ගැලපෙන අලංකාර වෙසක් පසුබිමක් තෝරන්න (8 options)";
+                stepTitle.textContent = "Step 2: Choose Background";
+                stepSubtitle.textContent = "Select a beautiful Vesak background template (8 options)";
                 break;
             case 3:
-                stepTitle.textContent = "තෙවන පියවර: බාගත කර බෙදාගන්න";
-                stepSubtitle.textContent = "ඔබ සැකසූ සුබපැතුම් පත බාගත කර මිතුරන් අතර බෙදා හරින්න";
+                stepTitle.textContent = "Step 3: Download & Share";
+                stepSubtitle.textContent = "Download your customized greeting card or share it with friends";
                 break;
         }
     }
@@ -519,8 +519,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (state.currentStep < TOTAL_STEPS) {
             setStep(state.currentStep + 1);
         } else {
-            modalSuccessTitle.textContent = "සුභ වෙසක් මංගල්‍යයක් වේවා! 🌸";
-            modalSuccessDesc.textContent = "ඔබගේ අලංකාර වෙසක් සුබපැතුම් පත සාර්ථකව නිර්මාණය කර ඇත. පහත Download හෝ Share යෙදුම් භාවිතයෙන් එය ඔබේ හිතවතුන් අතරේ සැනෙකින් බෙදාහරින්න.";
+            modalSuccessTitle.textContent = "Happy Vesak Day! 🌸";
+            modalSuccessDesc.textContent = "Your beautiful Vesak greeting card is ready! Use the Download or Share options below to instantly send it to your family and friends.";
             successModal.style.display = 'flex';
         }
     });
@@ -591,10 +591,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Increment friendship counter locally
             let count = parseInt(friendshipCounter.textContent.replace(/,/g, ''));
-            friendshipCounter.textContent = (count + 1).toLocaleString('si-LK');
+            friendshipCounter.textContent = (count + 1).toLocaleString('en-US');
 
-            modalSuccessTitle.textContent = "බාගත කිරීම සාර්ථකයි! 📥";
-            modalSuccessDesc.textContent = "ඔබගේ වෙසක් පත සාර්ථකව ජංගම දුරකථනයට හෝ පරිගණකයට සුරැකී ඇත. දැන් එය ඕනෑම මාධ්‍යයකින් ඔබගේ හිතමිතුරන් වෙත යවන්න!";
+            modalSuccessTitle.textContent = "Download Successful! 📥";
+            modalSuccessDesc.textContent = "Your Vesak card has been successfully saved to your device. You can now share it with your loved ones through any app!";
             successModal.style.display = 'flex';
 
             btnDownloadCard.style.opacity = '1';
@@ -607,7 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     function shareCardWithImage(platformName, shareText, fallbackUrl = '') {
         const cleanUrl = window.location.origin + window.location.pathname;
-        const fullShareText = `${shareText}\n\nමෙතැනින් ඔබේ පතත් සාදාගන්න: ${cleanUrl}`;
+        const fullShareText = `${shareText}\n\nCreate your own card here: ${cleanUrl}`;
 
         // Temporarily disable the active sharing button to prevent duplicate clicks
         const activeBtn = document.activeElement;
@@ -624,12 +624,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (navigator.canShare && navigator.canShare({ files: [file] })) {
                     navigator.share({
                         files: [file],
-                        title: 'පින්බර වෙසක් සිහිවටනයක් 🌸',
+                        title: 'Blessed Vesak Greeting Card 🌸',
                         text: fullShareText
                     })
                         .then(() => {
-                            modalSuccessTitle.textContent = "බෙදාගැනීම සාර්ථකයි! 🔗";
-                            modalSuccessDesc.textContent = `ඔබගේ වෙසක් පත සාර්ථකව ${platformName} ඔස්සේ බෙදා ගන්නා ලදී. සාමය සහ සතුට පතුරවන්න!`;
+                            modalSuccessTitle.textContent = "Sharing Successful! 🔗";
+                            modalSuccessDesc.textContent = `Your Vesak card was successfully shared via ${platformName}. Spread peace and happiness!`;
                             successModal.style.display = 'flex';
                         })
                         .catch((err) => {
@@ -665,20 +665,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     // 3. Try to copy the image to the clipboard
-                    const targetPlatform = platformName === 'Direct Share' ? 'ඕනෑම තැනක' : platformName;
+                    const targetPlatform = platformName === 'Direct Share' ? 'any platform' : platformName;
                     if (navigator.clipboard && window.ClipboardItem) {
                         navigator.clipboard.write([
                             new ClipboardItem({
                                 [blob.type]: blob
                             })
                         ]).then(() => {
-                            modalSuccessTitle.textContent = "බාගත කිරීම සහ කොපි කිරීම සාර්ථකයි! 📥📋";
-                            modalSuccessDesc.textContent = `ඔබගේ බ්‍රවුසරය සෘජුවම රූප Share කිරීමට සහය නොදක්වයි. එබැවින්, ඔබගේ වෙසක් පත ස්වයංක්‍රීයව බාගත කරන ලදී!\n\nඑමෙන්ම රූපය ඔබගේ Clipboard එකටද පිටපත් කරන ලදී (Copy). ඔබට එය ${targetPlatform} හි සෘජුවම Paste (Ctrl+V) කර පහසුවෙන් යැවිය හැක. 🌸`;
+                            modalSuccessTitle.textContent = "Download & Clipboard Copy Successful! 📥📋";
+                            modalSuccessDesc.textContent = `Your browser does not support direct image sharing. Therefore, your card has been automatically downloaded to your device!\n\nAdditionally, the image has been copied to your clipboard. You can paste it (Ctrl+V) directly into ${targetPlatform} to share it easily. 🌸`;
                             successModal.style.display = 'flex';
                         }).catch((err) => {
                             console.log('Clipboard write failed:', err);
-                            modalSuccessTitle.textContent = "බාගත කිරීම සාර්ථකයි! 📥";
-                            modalSuccessDesc.textContent = `ඔබගේ බ්‍රවුසරය සෘජුවම රූප Share කිරීමට සහය නොදක්වයි. එබැවින්, ඔබගේ වෙසක් පත ස්වයංක්‍රීයව බාගත කරන ලදී! දැන් එය පහසුවෙන්ම ${targetPlatform} වෙත Upload කර යැවිය හැක. 🌸`;
+                            modalSuccessTitle.textContent = "Download Successful! 📥";
+                            modalSuccessDesc.textContent = `Your browser does not support direct image sharing. Therefore, your card has been automatically downloaded! You can easily upload and share it on ${targetPlatform}. 🌸`;
                             successModal.style.display = 'flex';
                         }).finally(() => {
                             if (activeBtn) {
@@ -687,8 +687,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         });
                     } else {
-                        modalSuccessTitle.textContent = "බාගත කිරීම සාර්ථකයි! 📥";
-                        modalSuccessDesc.textContent = `ඔබගේ බ්‍රවුසරය සෘජුවම රූප Share කිරීමට සහය නොදක්වයි. එබැවින්, ඔබගේ වෙසක් පත ස්වයංක්‍රීයව බාගත කරන ලදී! දැන් එය පහසුවෙන්ම ${targetPlatform} වෙත Upload කර යැවිය හැක. 🌸`;
+                        modalSuccessTitle.textContent = "Download Successful! 📥";
+                        modalSuccessDesc.textContent = `Your browser does not support direct image sharing. Therefore, your card has been automatically downloaded! You can easily upload and share it on ${targetPlatform}. 🌸`;
                         successModal.style.display = 'flex';
                         if (activeBtn) {
                             activeBtn.style.opacity = '1';
@@ -702,19 +702,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Direct Web Share Button
     btnWebShare.addEventListener('click', () => {
-        shareCardWithImage('Direct Share', 'පරිගණක පීඨයේ වෙසක් සිහිවටන පතකින් ඔබටත් මටත් සාමය සතුට පිරි සුභ වෙසක් මංගල්‍යයක් වේවා! 🌸✨');
+        shareCardWithImage('Direct Share', 'Wishing you a peaceful and happy Vesak Day with this special card from the Faculty of Computing, USJ! 🌸✨');
     });
 
     // Individual Platform Sharing Triggers
     shareWhatsappBtn.addEventListener('click', () => {
-        shareCardWithImage('WhatsApp', 'පරිගණක පීඨයේ වෙසක් සිහිවටන පතකින් ඔබටත් මටත් සාමය සතුට පිරි සුභ වෙසක් මංගල්‍යයක් වේවා! 🌸✨', 'whatsapp');
+        shareCardWithImage('WhatsApp', 'Wishing you a peaceful and happy Vesak Day with this special card from the Faculty of Computing, USJ! 🌸✨', 'whatsapp');
     });
 
+    // Individual Messenger Sharing Triggers
     shareMessengerBtn.addEventListener('click', () => {
-        shareCardWithImage('Messenger', 'පරිගණක පීඨයේ වෙසක් සිහිවටන පතකින් ඔබටත් මටත් සාමය සතුට පිරි සුභ වෙසක් මංගල්‍යයක් වේවා! 🌸✨', 'messenger');
+        shareCardWithImage('Messenger', 'Wishing you a peaceful and happy Vesak Day with this special card from the Faculty of Computing, USJ! 🌸✨', 'messenger');
     });
 
+    // Individual Instagram Sharing Triggers
     shareInstagramBtn.addEventListener('click', () => {
-        shareCardWithImage('Instagram', 'පරිගණක පීඨයේ වෙසක් සිහිවටන පතකින් ඔබටත් මටත් සාමය සතුට පිරි සුභ වෙසක් මංගල්‍යයක් වේවා! 🌸✨');
+        shareCardWithImage('Instagram', 'Wishing you a peaceful and happy Vesak Day with this special card from the Faculty of Computing, USJ! 🌸✨');
     });
 });
