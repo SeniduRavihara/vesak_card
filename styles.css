@@ -583,7 +583,7 @@ header {
     width: 6px;
 }
 .background-grid::-webkit-scrollbar-thumb {
-    background: var(--primary-blue);
+    background: #d97706; /* Warm orange to match theme */
     border-radius: 10px;
 }
 .background-grid::-webkit-scrollbar-track {
