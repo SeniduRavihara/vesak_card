@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const state = {
         sender: '',
         recipient: '',
-        bgId: 1,
+        bgId: Math.floor(Math.random() * 8) + 1,
         currentStep: 1
     };
 
