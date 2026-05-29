@@ -164,6 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. COUNTER ANIMATION
     // -------------------------------------------------------------
     function animateCounter(target) {
+        if (!friendshipCounter) return;
         let count = target - 100;
         const speed = 15;
         const timer = setInterval(() => {
@@ -172,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 count = target;
                 clearInterval(timer);
             }
-            friendshipCounter.textContent = count.toLocaleString('si-LK');
+            friendshipCounter.textContent = count.toLocaleString('en-US');
         }, speed);
     }
     animateCounter(6106);
@@ -589,9 +590,11 @@ document.addEventListener('DOMContentLoaded', () => {
             link.click();
             document.body.removeChild(link);
 
-            // Increment friendship counter locally
-            let count = parseInt(friendshipCounter.textContent.replace(/,/g, ''));
-            friendshipCounter.textContent = (count + 1).toLocaleString('en-US');
+            // Increment friendship counter locally if element exists
+            if (friendshipCounter) {
+                let count = parseInt(friendshipCounter.textContent.replace(/,/g, ''));
+                friendshipCounter.textContent = (count + 1).toLocaleString('en-US');
+            }
 
             modalSuccessTitle.textContent = "Download Successful! 📥";
             modalSuccessDesc.textContent = "Your Vesak card has been successfully saved to your device. You can now share it with your loved ones through any app!";
