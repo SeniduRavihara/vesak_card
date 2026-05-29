@@ -370,16 +370,6 @@ header {
     overflow: hidden;
 }
 
-.instructions-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--primary-blue);
-    box-shadow: 0 0 8px var(--primary-blue);
-}
 
 .instructions-title {
     font-family: var(--font-sinhala-traditional);
