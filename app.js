@@ -532,6 +532,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     modalCloseBtn.addEventListener('click', () => {
         successModal.style.display = 'none';
+        
+        // Redirect to Home (Landing Page View)
+        creatorView.style.display = 'none';
+        landingView.style.display = 'flex';
+        
+        // Reset all inputs, state parameters, and character counters for a clean fresh start
+        inputSender.value = '';
+        inputRecipient.value = '';
+        state.sender = '';
+        state.recipient = '';
+        state.bgId = 1;
+        if (senderCounter) senderCounter.textContent = '0/20';
+        if (recipientCounter) recipientCounter.textContent = '0/20';
+        updateLivePreview();
     });
 
     // -------------------------------------------------------------
