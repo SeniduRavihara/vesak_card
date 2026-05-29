@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. ASYNCHRONOUS TEMPLATE LOADER (WITH CACHING & FALLBACK)
     // -------------------------------------------------------------
     function getTemplateImage(bgId) {
-        const src = `src/img${bgId}.jpeg`;
+        const src = `src/${bgId}.webp`;
 
         // Return cached image if available
         if (imageCache[src]) {
@@ -401,20 +401,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     function renderBackgroundOptions() {
         bgSelectionGrid.innerHTML = '';
-        for (let i = 1; i <= 15; i++) {
+        for (let i = 1; i <= 8; i++) {
             const opt = document.createElement('div');
             opt.className = `bg-option bg-theme-${i}`;
             if (i === state.bgId) opt.classList.add('selected');
             opt.dataset.id = i;
             opt.title = `Template ${i}`;
 
-            // Pre-load grid thumbnail background with the actual designed JPEG
-            if (i <= 6) {
-                opt.style.backgroundImage = `url('src/img${i}.jpeg')`;
-            } else {
-                // Fallback procedural visual style for remaining placeholders
-                opt.style.backgroundImage = '';
-            }
+            // Set grid thumbnail background with the actual designed WEBP
+            opt.style.backgroundImage = `url('src/${i}.webp')`;
 
             // Inner border wrapper
             const innerBorder = document.createElement('div');
@@ -484,7 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
             case 2:
                 stepTitle.textContent = "දෙවන පියවර: පසුබිම තෝරන්න";
-                stepSubtitle.textContent = "කාඩ්පතට ගැලපෙන අලංකාර වෙසක් පසුබිමක් තෝරන්න (15 options)";
+                stepSubtitle.textContent = "කාඩ්පතට ගැලපෙන අලංකාර වෙසක් පසුබිමක් තෝරන්න (8 options)";
                 break;
             case 3:
                 stepTitle.textContent = "තෙවන පියවර: බාගත කර බෙදාගන්න";
@@ -588,7 +583,7 @@ document.addEventListener('DOMContentLoaded', () => {
         generateHighResCard((canvas) => {
             const dataUrl = canvas.toDataURL('image/png');
             const link = document.createElement('a');
-            link.download = `USJ_Computing_Vesak_Card_${Date.now()}.png`;
+            link.download = `VesakCardGreeting_${Date.now()}.png`;
             link.href = dataUrl;
             document.body.appendChild(link);
             link.click();
@@ -651,7 +646,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // 1. Auto-download the high-res customized PNG image first
                     const dataUrl = canvas.toDataURL('image/png');
                     const link = document.createElement('a');
-                    link.download = `USJ_Computing_Vesak_Card_${Date.now()}.png`;
+                    link.download = `VesakCardGreeting_${Date.now()}.png`;
                     link.href = dataUrl;
                     document.body.appendChild(link);
                     link.click();
