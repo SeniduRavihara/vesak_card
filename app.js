@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Canvas Preview
     const previewCanvas = document.getElementById('preview-canvas');
     const previewCtx = previewCanvas.getContext('2d');
+    const previewImage = document.getElementById('preview-image');
 
     // Modal
     const successModal = document.getElementById('success-modal');
@@ -357,6 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     state.recipient,
                     img
                 );
+                previewImage.src = previewCanvas.toDataURL('image/png');
             })
             .catch(err => {
                 // Fallback: draw beautiful procedural vector template
@@ -369,6 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     state.recipient,
                     null
                 );
+                previewImage.src = previewCanvas.toDataURL('image/png');
             });
     }
 
@@ -637,19 +640,41 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (platformName === 'WhatsApp') {
                             finalUrl = `https://api.whatsapp.com/send?text=${encodedText}`;
                         } else if (platformName === 'Messenger') {
-                            finalUrl = `https://www.facebook.com/dialog/send?link=${encodeURIComponent(cleanUrl)}&app_id=291494419107518&redirect_uri=${encodeURIComponent(cleanUrl)}`;
+                            finalUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(cleanUrl)}`;
                         }
                         window.open(finalUrl, '_blank');
                     }
 
-                    // 3. Show polite informative modal explaining that the image has been downloaded
-                    modalSuccessTitle.textContent = "බාගත කරගැනීම සාර්ථකයි! 📥";
-                    modalSuccessDesc.textContent = `ඔබගේ බ්‍රවුසරය සෘජුවම රූප Share කිරීමට සහය නොදක්වයි. එබැවින්, ඔබගේ වෙසක් පත ස්වයංක්‍රීයව බාගත කරන ලදී! දැන් එය පහසුවෙන්ම ${platformName} වෙත Upload කර යැවිය හැක. 🌸`;
-                    successModal.style.display = 'flex';
-
-                    if (activeBtn) {
-                        activeBtn.style.opacity = '1';
-                        activeBtn.style.pointerEvents = 'auto';
+                    // 3. Try to copy the image to the clipboard
+                    const targetPlatform = platformName === 'Direct Share' ? 'ඕනෑම තැනක' : platformName;
+                    if (navigator.clipboard && window.ClipboardItem) {
+                        navigator.clipboard.write([
+                            new ClipboardItem({
+                                [blob.type]: blob
+                            })
+                        ]).then(() => {
+                            modalSuccessTitle.textContent = "බාගත කිරීම සහ කොපි කිරීම සාර්ථකයි! 📥📋";
+                            modalSuccessDesc.textContent = `ඔබගේ බ්‍රවුසරය සෘජුවම රූප Share කිරීමට සහය නොදක්වයි. එබැවින්, ඔබගේ වෙසක් පත ස්වයංක්‍රීයව බාගත කරන ලදී!\n\nඑමෙන්ම රූපය ඔබගේ Clipboard එකටද පිටපත් කරන ලදී (Copy). ඔබට එය ${targetPlatform} හි සෘජුවම Paste (Ctrl+V) කර පහසුවෙන් යැවිය හැක. 🌸`;
+                            successModal.style.display = 'flex';
+                        }).catch((err) => {
+                            console.log('Clipboard write failed:', err);
+                            modalSuccessTitle.textContent = "බාගත කිරීම සාර්ථකයි! 📥";
+                            modalSuccessDesc.textContent = `ඔබගේ බ්‍රවුසරය සෘජුවම රූප Share කිරීමට සහය නොදක්වයි. එබැවින්, ඔබගේ වෙසක් පත ස්වයංක්‍රීයව බාගත කරන ලදී! දැන් එය පහසුවෙන්ම ${targetPlatform} වෙත Upload කර යැවිය හැක. 🌸`;
+                            successModal.style.display = 'flex';
+                        }).finally(() => {
+                            if (activeBtn) {
+                                activeBtn.style.opacity = '1';
+                                activeBtn.style.pointerEvents = 'auto';
+                            }
+                        });
+                    } else {
+                        modalSuccessTitle.textContent = "බාගත කිරීම සාර්ථකයි! 📥";
+                        modalSuccessDesc.textContent = `ඔබගේ බ්‍රවුසරය සෘජුවම රූප Share කිරීමට සහය නොදක්වයි. එබැවින්, ඔබගේ වෙසක් පත ස්වයංක්‍රීයව බාගත කරන ලදී! දැන් එය පහසුවෙන්ම ${targetPlatform} වෙත Upload කර යැවිය හැක. 🌸`;
+                        successModal.style.display = 'flex';
+                        if (activeBtn) {
+                            activeBtn.style.opacity = '1';
+                            activeBtn.style.pointerEvents = 'auto';
+                        }
                     }
                 }
             }, 'image/png');
