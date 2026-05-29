@@ -186,6 +186,8 @@ header {
     text-align: center;
     margin-bottom: 2rem;
     padding-top: 2rem;
+    position: relative;
+    z-index: 10;
 }
 
 .branding-logo {
@@ -939,11 +941,6 @@ header {
     .bg-option {
         grid-column: auto !important; /* Reset span 2 from desktop */
         position: relative; /* Set local context for z-index layering */
-    }
-    .bg-option:nth-child(9) {
-        grid-column: span 2 !important;
-        justify-self: center;
-        width: calc(50% - 6px);
     }
 
     .action-card {

@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const state = {
         sender: '',
         recipient: '',
-        bgId: Math.floor(Math.random() * 9) + 1,
+        bgId: Math.floor(Math.random() * 10) + 1,
         currentStep: 1
     };
 
@@ -402,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     function renderBackgroundOptions() {
         bgSelectionGrid.innerHTML = '';
-        for (let i = 1; i <= 9; i++) {
+        for (let i = 1; i <= 10; i++) {
             const opt = document.createElement('div');
             opt.className = `bg-option bg-theme-${i}`;
             if (i === state.bgId) opt.classList.add('selected');
@@ -480,7 +480,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
             case 2:
                 stepTitle.textContent = "Step 2: Choose Background";
-                stepSubtitle.textContent = "Select a beautiful Vesak background template (9 options)";
+                stepSubtitle.textContent = "Select a beautiful Vesak background template (10 options)";
                 break;
             case 3:
                 stepTitle.textContent = "Step 3: Download & Share";
