@@ -335,11 +335,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Draw Sender Name (From) - Centered horizontally, shifted slightly left for optimal balance
         ctx.textAlign = 'center';
         const finalSender = senderName.trim() ? senderName : "........................................";
-        ctx.fillText(finalSender, 660 * scale, 1296 * scale);
+        ctx.fillText(finalSender, 620 * scale, 1296 * scale);
 
         // Draw Recipient Name (To) - Centered horizontally, shifted slightly left for optimal balance
         const finalRecipient = recipientName.trim() ? recipientName : "........................................";
-        ctx.fillText(finalRecipient, 660 * scale, 1348 * scale);
+        ctx.fillText(finalRecipient, 620 * scale, 1348 * scale);
 
         ctx.restore();
     }
