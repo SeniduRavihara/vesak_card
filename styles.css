@@ -231,6 +231,7 @@ header {
     letter-spacing: 1.5px;
     line-height: 1.2;
     text-transform: uppercase; /* All caps */
+    white-space: nowrap;
 }
 
 .logo-sub-text {
@@ -242,6 +243,7 @@ header {
     letter-spacing: 3.8px;
     text-transform: uppercase; /* All caps */
     margin-top: 1px;
+    white-space: nowrap;
 }
 
 .branding-logo:hover .usj-logo-header {
@@ -907,27 +909,39 @@ header {
         display: none !important; /* Reduce to exactly 3 lanterns on mobile viewports */
     }
     body {
-        padding: 0.5rem;
+        padding: 0.25rem;
+    }
+    .app-container {
+        padding: 1rem 0.25rem;
     }
     .branding-logo {
-        padding: 0.6rem 1.5rem;
-        gap: 10px;
+        padding: 0.4rem 0.8rem 0.4rem 0.5rem;
+        gap: 8px;
+        max-width: 100%;
     }
     .logo-main-text {
-        font-size: 1.15rem;
+        font-size: clamp(0.85rem, 4.5vw, 1.1rem);
+        letter-spacing: 1px;
     }
     .logo-sub-text {
-        font-size: 0.58rem;
-        letter-spacing: 1.2px;
+        font-size: clamp(0.42rem, 2vw, 0.52rem);
+        letter-spacing: clamp(1px, 2.5vw, 2.5px);
     }
     .usj-logo-header {
-        width: 40px !important;
-        height: 40px !important;
+        width: 36px !important;
+        height: 36px !important;
     }
     .hero-title {
         font-size: 2.1rem;
     }
+    .instructions-card {
+        padding: 1.25rem;
+        margin-top: 2rem;
+    }
     .wizard-panel {
+        padding: 1.2rem;
+    }
+    .modal-card {
         padding: 1.5rem;
     }
     .background-grid {
